@@ -15,14 +15,14 @@ from cloudant.client import Cloudant
 # You must overwrite the values in api_access below with those from your service credential, that you created in IBM Cloud IAM for Cloudant.
 # The actual values below are to just show the format - and these are no longer valid.
 api_access = {
-  "apikey": "-OPMa01VOo5YhaHqHatlzNQiNFF1b31fqlY3hRpc720H",
-  "host": "c5abe484-83a8-407e-92f8-b3be0f8f0afe-bluemix.cloudantnosqldb.appdomain.cloud",
-  "iam_apikey_description": "Auto-generated for key 1547206e-bf1b-466e-b797-7afabfc9b29e",
-  "iam_apikey_name": "apiaccess",
+  "apikey": "WGqiaScyleRudh1-zIGuGTSkpdIKY2TpjsJ0G74iToDc",
+  "host": "6c709e82-8633-4ceb-9d99-bcc842a6c369-bluemix.cloudantnosqldb.appdomain.cloud",
+  "iam_apikey_description": "Auto-generated for key da8f22a4-d0eb-46f4-8945-d401cf424595",
+  "iam_apikey_name": "climate-rating-apiaccess",
   "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/4a35fbbd385a17dc3178b6dc66949178::serviceid:ServiceId-c6da6f0d-c24c-4d28-b15e-ea426501b8d1",
-  "url": "https://c5abe484-83a8-407e-92f8-b3be0f8f0afe-bluemix.cloudantnosqldb.appdomain.cloud",
-  "username": "c5abe484-83a8-407e-92f8-b3be0f8f0afe-bluemix"
+  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/8926cd9bc46348adb0dd53354c359ad0::serviceid:ServiceId-4c959bc5-d9b3-451c-b314-bbbde3f8eb79",
+  "url": "https://6c709e82-8633-4ceb-9d99-bcc842a6c369-bluemix.cloudantnosqldb.appdomain.cloud",
+  "username": "6c709e82-8633-4ceb-9d99-bcc842a6c369-bluemix"
 }
 
 client = Cloudant.iam(
@@ -109,7 +109,7 @@ class ProductDAO(object):
             my_document = self.cir_db[id]
             my_document['id'] = my_document['barcode_id']
         except KeyError:
-            api.abort(404, "Product {} not registered".format(id))
+            api.abort(404, "Product ID {} not registered".format(id))
         return my_document
 
     def get_by_barcode(self, barcode_id):
@@ -119,7 +119,19 @@ class ProductDAO(object):
             my_document = self.cir_db[barcode_id]
             my_document['id'] = my_document['barcode_id']
         except KeyError:
-            api.abort(404, "Product {} not registered".format(id))
+            api.abort(404, "Product barcode {} not registered".format(barcode_id))
+        return my_document
+
+    def get_by_brand(self, brand):
+        my_document = [x for x in self.cir_db if x['brand'] == brand]
+        if my_document == []:
+            api.abort(404, "Brand {} not registered".format(brand))
+        return my_document
+
+    def get_by_model(self, model):
+        my_document = [x for x in self.cir_db if x['model'] == model]
+        if my_document == []:
+            api.abort(404, "Model {} not registered".format(model))
         return my_document
 
     def create(self, data):
@@ -156,13 +168,21 @@ class Product(Resource):
     @api.marshal_with(product)
     @api.doc('List products')
     @api.doc(params={'barcode_id': 'The barcode ID of this product (optional)'})
+    @api.doc(params={'brand': 'The brand of this product (optional)'})
+    @api.doc(params={'model': 'The model of this product (optional)'})
     def get(self):
-        # Currently we support either a full list, or query by barcode_id.
+        # Currently we support either a full list, or query by barcode_id/brand/model
         parser = reqparse.RequestParser()
         parser.add_argument('barcode_id', required=False, location='args')
+        parser.add_argument('brand', required=False, location='args')
+        parser.add_argument('model', required=False, location='args')
         args = parser.parse_args()
         if args['barcode_id']:
             return [ProductDAO().get_by_barcode(args['barcode_id'])]
+        elif args['brand']: 
+            return [ProductDAO().get_by_brand(args['brand'])]
+        elif args['model']: 
+            return [ProductDAO().get_by_model(args['model'])]
         else:
             return ProductDAO().list()    
 
