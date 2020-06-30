@@ -112,6 +112,15 @@ class ProductDAO(object):
             api.abort(404, "Product ID {} not registered".format(id))
         return my_document
 
+    def get_by_filters(self, args):
+        my_document = [x for x in self.cir_db]
+        for key, value in args.items():
+            if value is not None:
+                my_document = [x for x in my_document if x[key] == value]
+                if my_document == []:
+                    api.abort(404, "The product is not registered")
+        return my_document
+
     def get_by_barcode(self, barcode_id):
         # For now this is easy, since id is the same as barcode_id....in the future this would need an
         # index of some such search ability
@@ -132,6 +141,12 @@ class ProductDAO(object):
         my_document = [x for x in self.cir_db if x['model'] == model]
         if my_document == []:
             api.abort(404, "Model {} not registered".format(model))
+        return my_document
+
+    def get_by_category(self, category):
+        my_document = [x for x in self.cir_db if x['category'] == category]
+        if my_document == []:
+            api.abort(404, "Category {} not registered".format(category))
         return my_document
 
     def create(self, data):
@@ -170,21 +185,20 @@ class Product(Resource):
     @api.doc(params={'barcode_id': 'The barcode ID of this product (optional)'})
     @api.doc(params={'brand': 'The brand of this product (optional)'})
     @api.doc(params={'model': 'The model of this product (optional)'})
+    @api.doc(params={'category': 'The category of this product (optional)'})
     def get(self):
         # Currently we support either a full list, or query by barcode_id/brand/model
         parser = reqparse.RequestParser()
         parser.add_argument('barcode_id', required=False, location='args')
         parser.add_argument('brand', required=False, location='args')
         parser.add_argument('model', required=False, location='args')
+        parser.add_argument('category', required=False, location='args')
         args = parser.parse_args()
-        if args['barcode_id']:
-            return [ProductDAO().get_by_barcode(args['barcode_id'])]
-        elif args['brand']: 
-            return [ProductDAO().get_by_brand(args['brand'])]
-        elif args['model']: 
-            return [ProductDAO().get_by_model(args['model'])]
+        filters_count = sum(value is not None for value in args.values())
+        if filters_count == 0:
+            return ProductDAO().list()
         else:
-            return ProductDAO().list()    
+            return ProductDAO().get_by_filters(args)
 
     @api.marshal_with(product, code=201)
     @api.doc(body=product)
