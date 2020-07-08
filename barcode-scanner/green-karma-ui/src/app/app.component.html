@@ -1,10 +1,12 @@
-Welcome to green Karma
-<button mat-fab color="primary" (click)="scanBarCode = !scanBarCode">
-  <mat-icon>camera_enhance</mat-icon>
-</button>
-
-<div *ngIf="scanBarCode">
-  <app-barcode-scanner></app-barcode-scanner>
+<div class="container">
+  <div class="header-menu">
+    <h1>Green Karma</h1>
+    <nav mat-tab-nav-bar mat-align-tabs="end">
+      <a mat-tab-link *ngFor="let tab of tabs" [routerLink]="tab.link" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        {{ tab.title }}
+      </a>
+    </nav>
+  </div>
 </div>
 
 <pre>We have these products in DB: {{ products | json }}</pre>
