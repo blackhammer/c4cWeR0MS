@@ -2,9 +2,12 @@ import csv
 import time
 
 from flask import Flask
+from flask_cors import CORS
 from flask_restx import Api, Resource, fields, reqparse
 
 app = Flask(__name__)
+CORS(app)
+
 api = Api(app, version='1.0', title='Cloud Impact Rating API',
     description='A protoype API system allowing the storage and retrieval of Climate Impact Rating data for products',
     prefix='/v1'
@@ -109,7 +112,7 @@ class ProductDAO(object):
             my_document = self.cir_db[id]
             my_document['id'] = my_document['barcode_id']
         except KeyError:
-            api.abort(404, "Product ID {} not registered".format(id))
+            None
         return my_document
 
     def get_by_filters(self, args):
@@ -118,7 +121,7 @@ class ProductDAO(object):
             if value is not None:
                 my_document = [x for x in my_document if x[key] == value]
                 if my_document == []:
-                    api.abort(404, "The product is not registered")
+                    return None
         return my_document
 
     def get_by_barcode(self, barcode_id):
@@ -128,25 +131,25 @@ class ProductDAO(object):
             my_document = self.cir_db[barcode_id]
             my_document['id'] = my_document['barcode_id']
         except KeyError:
-            api.abort(404, "Product barcode {} not registered".format(barcode_id))
+            None
         return my_document
 
     def get_by_brand(self, brand):
         my_document = [x for x in self.cir_db if x['brand'] == brand]
         if my_document == []:
-            api.abort(404, "Brand {} not registered".format(brand))
+            None
         return my_document
 
     def get_by_model(self, model):
         my_document = [x for x in self.cir_db if x['model'] == model]
         if my_document == []:
-            api.abort(404, "Model {} not registered".format(model))
+            None
         return my_document
 
     def get_by_category(self, category):
         my_document = [x for x in self.cir_db if x['category'] == category]
         if my_document == []:
-            api.abort(404, "Category {} not registered".format(category))
+            None
         return my_document
 
     def create(self, data):

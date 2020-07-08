@@ -14,6 +14,8 @@ import { AboutComponent } from './about/about.component';
 import { SearchComponent } from './search/search.component';
 import { RecycleComponent } from './recycle/recycle.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import { RecycleComponent } from './recycle/recycle.component';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
