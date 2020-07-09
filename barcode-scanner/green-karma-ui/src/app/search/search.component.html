@@ -1,16 +1,18 @@
-<p>search works!</p>
-
 <div class='content'>
     <mat-button-toggle-group name='searchType'>
-        <mat-button-toggle value='search'>Search bar</mat-button-toggle>
-        <mat-button-toggle value='barcode'>Scan barcode</mat-button-toggle>
+        <mat-button-toggle value='search' (click)="openSearchBar()">Search by Product</mat-button-toggle>
+        <mat-button-toggle value='barcode' (click)="openScanBarcode()">Scan barcode</mat-button-toggle>
     </mat-button-toggle-group>
 
     <button mat-fab color="primary" (click)="scanBarCode = !scanBarCode">
         <mat-icon>camera_enhance</mat-icon>
     </button>
 
-    <div *ngIf="scanBarCode">
+    <div *ngIf="searchBar">
+        <app-search-bar></app-search-bar>
+    </div>
+
+    <div *ngIf="scanBarCode" >
         <app-barcode-scanner></app-barcode-scanner>
     </div>
 </div>
