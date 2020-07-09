@@ -33,8 +33,8 @@ export class AppComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.productService.getProducts().subscribe(data => {
+    /*this.productService.getProducts().subscribe(data => {
       this.products = data;
-    })
+    })*/
   }
 }
