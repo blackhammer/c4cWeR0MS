@@ -15,6 +15,9 @@ import { SearchComponent } from './search/search.component';
 import { RecycleComponent } from './recycle/recycle.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SearchBarComponent } from './search/search-bar/search-bar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     BarcodeScannerComponent,
     AboutComponent,
     SearchComponent,
-    RecycleComponent
+    RecycleComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatTabsModule,
     MatButtonToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,19 @@
+:host ::ng-deep .form-group {
+    margin: 30px;
+    font-size: 20px;
+    margin-left:-460px;
+    //max-width: 100px;
+    height: 100px;
+}
+:host ::ng-deep .form-group .input {
+    height:50px;
+}
+
+.label {
+    padding: 10px;
+}
+
+.container {
+    //background-color: rgb(243, 178, 178);
+    ///adding-left: 200px;padding-right: 100px;
+}
