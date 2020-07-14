@@ -119,7 +119,7 @@ class ProductDAO(object):
         my_document = [x for x in self.cir_db]
         for key, value in args.items():
             if value is not None:
-                my_document = [x for x in my_document if x[key] == value]
+                my_document = [x for x in my_document if x[key].lower() == value.lower()]
                 if my_document == []:
                     return None
         return my_document
@@ -135,19 +135,25 @@ class ProductDAO(object):
         return my_document
 
     def get_by_brand(self, brand):
-        my_document = [x for x in self.cir_db if x['brand'] == brand]
+        my_document = [x for x in self.cir_db if x['brand'].lower() == brand.lower()]
         if my_document == []:
             None
         return my_document
 
     def get_by_model(self, model):
-        my_document = [x for x in self.cir_db if x['model'] == model]
+        my_document = [x for x in self.cir_db if x['model'].lower() == model.lower()]
         if my_document == []:
             None
         return my_document
 
     def get_by_category(self, category):
-        my_document = [x for x in self.cir_db if x['category'] == category]
+        my_document = [x for x in self.cir_db if x['category'].lower() == category.lower()]
+        if my_document == []:
+            None
+        return my_document
+
+    def get_by_type(self, type):
+        my_document = [x for x in self.cir_db if x['type'].lower() == type.lower()]
         if my_document == []:
             None
         return my_document
@@ -189,6 +195,7 @@ class Product(Resource):
     @api.doc(params={'brand': 'The brand of this product (optional)'})
     @api.doc(params={'model': 'The model of this product (optional)'})
     @api.doc(params={'category': 'The category of this product (optional)'})
+    @api.doc(params={'type': 'The type of this product (optional)'})
     def get(self):
         # Currently we support either a full list, or query by barcode_id/brand/model
         parser = reqparse.RequestParser()
@@ -196,6 +203,7 @@ class Product(Resource):
         parser.add_argument('brand', required=False, location='args')
         parser.add_argument('model', required=False, location='args')
         parser.add_argument('category', required=False, location='args')
+        parser.add_argument('type', required=False, location='args')
         args = parser.parse_args()
         filters_count = sum(value is not None for value in args.values())
         if filters_count == 0:
