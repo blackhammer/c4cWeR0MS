@@ -1,0 +1,76 @@
+img {
+    padding: 0.5em;
+}
+
+h1 {
+    display: inline-block;
+    color: green;
+    font-family: "Segoe UI",Arial,sans-serif;
+}
+
+p {
+    margin-block-end: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    display: flex;
+}
+
+.header-menu {
+    background: #99e699;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.footer {
+    background: #666666;
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.footer-sign {
+    margin-top: 5px;
+}
+
+.content {
+    position: relative;
+    background: white;
+    padding-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 100%;
+    height: max-content;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.mat-tab-header {
+    align-self: flex-end;
+}
+
+.mat-tab-link {
+    color: black;
+}
+
+.mat-tab-link.mat-focus-indicator.mat-tab-label-active {
+    background-color: rgba(0, 151, 19, 1);
+}

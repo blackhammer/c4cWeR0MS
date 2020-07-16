@@ -1,0 +1,31 @@
+:host ::ng-deep .form-group {
+    margin: 30px;
+    font-size: 20px;
+    margin-left:-460px;
+    //max-width: 100px;
+    height:10px;
+    display: inline-block;
+}
+input {
+    //border-radius: 1px;
+    //border-color: rgb(199, 199, 199);
+    //width: 40%;
+    outline: none;
+}
+
+.label {
+    padding: 10px;
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+}
+
+.footer {
+    display: inline-block;
+    margin-left:-460px;
+    text-align:left;
+}
+.container {
+    //background-color: rgb(243, 178, 178);
+    ///adding-left: 200px;padding-right: 100px;
+}
