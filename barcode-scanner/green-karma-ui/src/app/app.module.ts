@@ -20,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { AgmCoreModule} from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDxeNmR1mOiaCTl78WvMQjpC8TNHuCmDJQ',
+      libraries: ['places']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
