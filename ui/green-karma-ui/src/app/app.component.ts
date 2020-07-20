@@ -20,6 +20,7 @@ export class AppComponent {
   public tabs: Array<TabConfig> = [
     { title: 'Search', link: 'search'}, 
     { title: 'Recycle', link: 'recycle'},
+    { title: 'MyKarma', link: 'profile'},
     { title: 'About', link: 'about'}
   ];
   scanBarCode: boolean = false;

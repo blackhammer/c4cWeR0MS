@@ -17,9 +17,12 @@ import { RecycleComponent } from './recycle/recycle.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './search/search-bar/search-bar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     AboutComponent,
     SearchComponent,
     RecycleComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatInputModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
