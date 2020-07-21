@@ -21,7 +21,7 @@ mat-button-toggle {
   }
 
   mat-card { 
-    width:70%; 
+    width:50%; 
     display: inline-flex;
     margin: 30px;
     border-radius: 4px;;
@@ -29,11 +29,11 @@ mat-button-toggle {
   }
 
 mat-card-content {
-    margin-top: 30px;
     text-align: left;
-    margin-left: 140px;
+    margin-left: 3em;
     font-family: monospace;
     font-size: medium;
+    display: flex;
     
 }
 
@@ -42,4 +42,43 @@ mat-card-content {
     width: auto;
     //text-align: end;
     margin-left: 100px;
+}
+
+.details {
+  font-weight: 600; 
+  font-size: xx-large;
+  color: #6b6b6b;
+  text-transform: uppercase;
+}
+p {
+  margin: 0
+}
+
+.rating {
+  //padding-left: 10em ;
+  font-size: large;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+
+ul.a {
+  list-style-type: square;
+  padding-left: 1.5em;;
+}
+
+ul.b {
+  list-style-type: none;
+  display: flex;
+  color: #fd8c00;
+  padding: 0;
+  margin:0;
+}
+
+mat-icon {
+  width: 1em;
+  font-size: 1.5em;
+  
+}
+.ratingStar {
+
 }

@@ -1,30 +1,31 @@
-<div class="container">
-    <form [formGroup]="searchForm">
+<div>
+    <form [formGroup]="searchForm" class="form">
         <div class="form-group row">
-            <label class="label">Appliance Type</label>
-            <input formControlName="ApplianceType" type="text"/>
+            <mat-form-field>
+                <mat-label>Appliance Type</mat-label>
+                <input matInput formControlName="ApplianceType" type="text"/>
+            </mat-form-field>
+        </div>
+        <div class="form-group row">
+            <mat-form-field>
+                <mat-label>Model</mat-label>
+                <input matInput formControlName="Model" type="text"/>
+            </mat-form-field>
+        </div>
+        <div class="form-group row">
+            <mat-form-field>
+                <mat-label>Brand</mat-label>
+                <input matInput formControlName="Brand" type="text"/>
+            </mat-form-field>
+        </div>
+        <div class="form-group row">
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <input matInput formControlName="Category" type="text"/>
+            </mat-form-field>
         </div>
     </form>
-    <form [formGroup]="searchForm">
-        <div class="form-group row">
-            <label class="label">Model</label>
-            <input formControlName="Model" type="text"/>
-        </div>
-    </form>
-    <form [formGroup]="searchForm">
-        <div class="form-group row">
-            <label class="label">Brand</label>
-            <input formControlName="Brand" type="text"/>
-        </div>
-    </form>
-    <form [formGroup]="searchForm">
-        <div class="form-group row">
-            <label class="label">Category</label>
-            <input formControlName="Category" type="text"/>
-        </div>
-    </form>
-    
-    <div class="form-group row">
-        <button mat-raised-button (click)="search()">Search</button>
+    <div class="searchButton">
+        <button style="width: 30em; padding:0.5em;background-color: #32c734;font-size:larger; border-radius: 2em;" mat-raised-button (click)="search()">Click To Search</button>
     </div>
 </div>

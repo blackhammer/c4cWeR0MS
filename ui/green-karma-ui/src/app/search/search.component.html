@@ -14,7 +14,7 @@
 
     <div *ngIf="results" class="grid">
         <div>
-            <button mat-raised-button style="margin-right: 80px; width:220px;background-color: #9ff5b2;" (click)="openSearchBar()">
+            <button mat-raised-button style="margin-right: 80px; width:220px;background-color: #32c734;" (click)="openSearchBar()">
                 <!-- <mat-icon style="display: contents;">keybord_arrow_left</mat-icon> -->
                 Return to Search</button>
         </div>
@@ -22,26 +22,40 @@
         <mat-card *ngFor="let product of products">
                 <img *ngIf="(product.type | lowercase) == 'air conditioner' " mat-card-image src="https://images.homedepot-static.com/productImages/70654248-02a9-40a9-9b9f-3fc31eacc65b/svn/ge-smart-heating-cooling-aec14ay-64_1000.jpg" style="max-width: 270px; max-height: 270px;">
                 <img *ngIf="(product.type | lowercase) == 'dryer' " mat-card-image src="https://images.homedepot-static.com/productImages/ef33d316-3fa6-4e90-8d52-1fc65baee64c/svn/white-lg-electronics-electric-dryers-dle3500w-64_1000.jpg" style="max-width: 270px; max-height: 270px;">
-                <img *ngIf="(product.type | lowercase) == 'washer' " mat-card-image src="https://www.ajmadison.com/ajmadison/images/large_no_watermark/wm3700hva-lg-27-inch-front-load-washer-graphite-steel-front5b55efe8323183.09084564_5c941.jpg" style="max-width: 270px; max-height: 270px;">
+                <img *ngIf="(product.type | lowercase) == 'washer' " mat-card-image src="https://www.ajmadison.com/ajmadison/images/large_no_watermark/wm3700hva-lg-27-inch-front-load-washer-graphite-steel-front5b55efe8323183.09084564_5c941.jpg" style="max-width: 270px; max-height: 270px;margin-left: 3em;margin-right: 2em">
                 <img *ngIf="(product.type | lowercase) == 'refrigerator' " mat-card-image src="https://images.homedepot-static.com/productImages/f187cfc6-f4c6-4195-95e1-ad21b18c38a5/svn/fingerprint-resistant-stainless-steel-samsung-french-door-refrigerators-rf23r6201sr-64_1000.jpg" style="max-width: 270px; max-height: 270px;">
-
                 <mat-card-content>
-                <p>{{product.brand}}</p>
-                <p>{{product.type}}</p>
-                <p>{{product.category}}</p>
-                <p>{{product.model}}</p>
-                <div>
-                    <h3>Rating</h3>
-                    <p>Efficiency: {{product.rating_data.efficiency}}</p>
-                    <p>Energy: {{product.rating_data.efficiency}}</p>
-                    <p>C02: {{product.rating_data.efficiency}}</p>
-                    <p>OtherGG: {{product.rating_data.efficiency}}</p>
-                    <p>Water: {{product.rating_data.efficiency}}</p>
-                    <p>Plastic: {{product.rating_data.efficiency}}</p>
-                    <p>Lifetime: {{product.rating_data.efficiency}}</p>
-                    <p>Recyclability: {{product.rating_data.efficiency}}</p>
-                    <p>Repairability: {{product.rating_data.efficiency}}</p>
-                </div>
+                    <div>
+                        <div class="details">
+                            <p>{{product.brand}} {{product.model}}</p>
+                            <p>{{product.category}} {{product.type}}</p>
+                        </div>
+                        <div class="rating">
+                                <ul class="b"><p style="margin-top:0.5em; color:black;margin-right: 0.5em;">Rating</p>{{calculateRating(product)}}
+                                    <div *ngFor="let cal of stars;index as i">
+                                        <li><mat-icon>star_rate</mat-icon></li>
+                                    </div>
+                                </ul>
+                            <ul class="a">
+                                <li>Efficiency: {{product.rating_data.efficiency}}</li>
+                                <li>Energy: {{product.rating_data.energy}}</li>
+                                <li>C02: {{product.rating_data.CO2}}</li>
+                                <li>OtherGG: {{product.rating_data.otherGG}}</li>
+                                <li>Water: {{product.rating_data.water}}</li>
+                                <li>Plastic: {{product.rating_data.plastic}}</li>
+                                <li>Lifetime: {{product.rating_data.lifetime}}</li>
+                                <li>Recyclability: {{product.rating_data.recyclability}}</li>
+                                <li>Repairability: {{product.rating_data.repairability}}</li>
+                            </ul>
+                            <div>
+                                <button style="width: 14em;
+                                margin-bottom: 1em;
+                                background-color: #ff9400;
+                                font-size: initial;
+                                border-radius: 1em;" mat-raised-button (click)="openProfile()">Add Item To Profile</button>
+                            </div>
+                        </div>
+                    </div>
             </mat-card-content>
         </mat-card>
     </div>

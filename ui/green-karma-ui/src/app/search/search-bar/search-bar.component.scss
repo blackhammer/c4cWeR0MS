@@ -5,6 +5,7 @@
     //max-width: 100px;
     height:10px;
     display: inline-block;
+    margin-bottom: 3em;
 }
 input {
     //border-radius: 1px;
@@ -20,12 +21,40 @@ input {
     text-align: right;
 }
 
+.searchButton {
+    display: inline-block;
+    width: 240px  !important;
+    text-align: center;
+    margin-top: 3em;
+    margin-right:21em;
+}
+
 .footer {
     display: inline-block;
     margin-left:-460px;
     text-align:left;
 }
-.container {
-    //background-color: rgb(243, 178, 178);
-    ///adding-left: 200px;padding-right: 100px;
+
+.form {
+    width: 100%;
+    display: inline-grid;
+    margin-left:17em;
+    margin-right: 25em;
+}
+
+mat-form-field {
+    margin-left: 27em;
+    margin-right: 30em;
+    max-width: 35em;
+    display: inline-block;
+    width:100%;
+
+}
+
+input {
+    width: auto
+}
+
+::ng-deep .mat-form-field-flex {
+    background-color: #fbfbfb;
 }
