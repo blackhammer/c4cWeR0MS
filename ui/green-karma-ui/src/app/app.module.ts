@@ -23,6 +23,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProfileComponent } from './profile/profile.component';
+import { AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,11 @@ import { ProfileComponent } from './profile/profile.component';
     MatSnackBarModule,
     MatGridListModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDxeNmR1mOiaCTl78WvMQjpC8TNHuCmDJQ',
+      libraries: ['places']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

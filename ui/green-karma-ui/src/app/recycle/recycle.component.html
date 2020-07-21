@@ -2,3 +2,25 @@
     <h3>Find a recycling location close to you</h3>
     <img src="assets/images/Recycling_Locations.png" width="90%">
 </div>
+
+
+<div class="center">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Find a place to recycle your appliance</h2>
+            <div class="form-group">
+                <label for="place">Search Google Place</label>
+                <input type="text" class="form-control" id="place" #search [formControl]="searchControl"
+                    autocomplete="off" autocapitalize="off" spellcheck="off">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" style="height:600px; width: 800px;">
+                <agm-marker *ngFor="let latlong of latlongs" [latitude]="latlong.latitude" [longitude]= "latlong.longitude"></agm-marker>
+            </agm-map>
+            
+        </div>
+    </div>
+</div>
