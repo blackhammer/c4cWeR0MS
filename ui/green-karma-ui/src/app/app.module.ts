@@ -53,7 +53,7 @@ import { AgmCoreModule} from '@agm/core';
     MatInputModule,
     MatProgressBarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDxeNmR1mOiaCTl78WvMQjpC8TNHuCmDJQ',
+      apiKey: 'AIzaSyDQLfuZECFQ40XRy8smwCLCHOL2b2mngxc',
       libraries: ['places']
     })
   ],
