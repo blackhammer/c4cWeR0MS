@@ -8,7 +8,7 @@ from flask_restx import Api, Resource, fields, reqparse
 app = Flask(__name__)
 CORS(app)
 
-api = Api(app, version='1.0', title='Cloud Impact Rating API',
+api = Api(app, version='1.0', title='Green Karma API (Climant Impact Rating)',
     description='A protoype API system allowing the storage and retrieval of Climate Impact Rating data for products',
     prefix='/v1'
 )

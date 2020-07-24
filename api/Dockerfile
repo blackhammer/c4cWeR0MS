@@ -2,12 +2,13 @@ FROM python:3.6
 
 RUN pip install --upgrade pip
 
-WORKDIR /example
+WORKDIR /api
 RUN useradd -m worker
 RUN chown worker:worker .
 USER worker
 
 RUN pip install --upgrade --user pipenv
+RUN pip install -U flask-cors
 ENV PATH=/home/worker/.local/bin:$PATH
 
 COPY --chown=worker:worker . ./
